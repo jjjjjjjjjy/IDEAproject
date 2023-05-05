@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.CourseMapper">
+    <insert id="addCourse" parameterType="Course">
+        insert into classmanage.c_course (coverImage,name,hours,schools)
+        values (#{coverImage},#{name},#{hours},#{schools});
+    </insert>
+    <delete id="deleteCourseById" parameterType="int">
+        delete
+        from classmanage.c_course
+        where id=#{id};
+    </delete>
+    <update id="updateCourse" parameterType="Course" >
+        update classmanage.c_course set coverImage=#{coverImage},name = #{name},hours=#{hours},schools=#{schools} where id=#{id};
+    </update>
+    <update id="updateCourseBasicInfo" parameterType="Course" >
+        update classmanage.c_course set name = #{name},hours=#{hours},schools=#{schools} where id=#{id};
+    </update>
+    <select id="queryCourseById" resultType="Course">
+        select * from classmanage.c_course where id=#{id};
+    </select>
+    <select id="queryAllCourse" resultType="Course">
+        select * from classmanage.c_course;
+    </select>
+    <select id="queryCourseByName" resultType="Course">
+        select * from classmanage.c_course where name =#{name};
+    </select>
+    <select id="queryUser" resultType="User">
+        select * from classmanage.user where username=#{username} and password=#{password};
+    </select>
+    <insert id="addUser" parameterType="User">
+        insert into classmanage.user (username,password)
+        values (#{username},#{password});
+    </insert>
+</mapper>
